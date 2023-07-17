@@ -12,7 +12,9 @@ on:
         default: false
 
   push:
-    branches: [main]
+    branches:
+      - main
+      - 'feature/**'
   pull_request:
 
   # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
@@ -84,17 +86,24 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: "Debug ❯❯ Context Information"
         id: github_context_step
+        env:
+          JSON_GITHUB: ${{ toJSON(github) }}
+          JSON_JOB: ${{ toJSON(job) }}
+          JSON_STEPS: ${{ toJSON(steps) }}
+          JSON_RUNNER: ${{ toJSON(runner) }}
+          JSON_STRATEGY: ${{ toJSON(strategy) }}
+          JSON_MATRIX: ${{ toJSON(MATRIX) }}
         run: |
           .github/scripts/ciutil public-ip
           .github/scripts/ciutil show-cache-structure
           .github/scripts/ciutil ___
 
-          echo '${{ toJSON(github) }}'    >> $DEBUG_DIR/github.json &
-          echo '${{ toJSON(job) }}'       >> $DEBUG_DIR/job.json &
-          echo '${{ toJSON(steps) }}'     >> $DEBUG_DIR/steps.json &
-          echo '${{ toJSON(runner) }}'    >> $DEBUG_DIR/runner.json &
-          echo '${{ toJSON(strategy) }}'  >> $DEBUG_DIR/strategy.json &
-          echo '${{ toJSON(matrix) }}'    >> $DEBUG_DIR/matrix.json &
-          wait
+          printf "$JSON_GITHUB"    >> $DEBUG_DIR/github.json
+          printf "$JSON_JOB"       >> $DEBUG_DIR/job.json
+          printf "$JSON_STEPS"     >> $DEBUG_DIR/steps.json
+          printf "$JSON_RUNNER"    >> $DEBUG_DIR/runner.json
+          printf "$JSON_STRATEGY"  >> $DEBUG_DIR/strategy.json
+          printf $JSON_MATRIX      >> $DEBUG_DIR/matrix.json
 
           .github/scripts/ciutil dump-context
+

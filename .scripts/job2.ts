@@ -1,3 +1,5 @@
+#!/usr/bin/env -S deno run -A
+
 import process from 'node:process'
 import $ from 'dax/mod.ts'
 import { mapLimit } from 'promise-utils/map.ts'
