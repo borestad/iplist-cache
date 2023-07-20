@@ -30,7 +30,7 @@
     "parserOptions": {
       "ecmaVersion": 2023,
       "sourceType": "module",
-      "project": ".scripts/tsconfig.json"
+      "project": "src/tsconfig.json"
     },
     "plugins": [
       "unicorn"

@@ -1,6 +1,6 @@
 {
   "deno.enable": true,
-  "deno.importMap": "./.scripts/deno.json",
+  "deno.importMap": "./src/deno.json",
   "deno.suggest.autoImports": true,
   "deno.suggest.completeFunctionCalls": true,
   "deno.suggest.imports.autoDiscover": true,

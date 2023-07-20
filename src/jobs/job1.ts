@@ -3,11 +3,10 @@ import $ from 'dax/mod.ts'
 import { colors } from 'dax/src/deps.ts'
 import { mapLimit } from 'promise-utils/map.ts'
 import chalk from 'npm:chalk@5'
-import * as mod from "std/uuid/mod.ts";
+import * as mod from 'std/uuid/mod.ts'
 const { log } = console
 
 process.env.FORCE_COLOR = 'true'
-
 
 log(mod.v1.generate())
 
@@ -39,3 +38,6 @@ console.log(bar)
 
 console.log(chalk.bgBlue.red('hello world'))
 console.log(colors.red(colors.bgBlue('hello world')))
+
+
+

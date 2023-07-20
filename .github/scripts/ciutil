@@ -22,7 +22,7 @@ preinstall-binaries() {
   cp .github/scripts/pstats ~/.local/bin/
   cp .github/scripts/ciutil ~/.local/bin/
 
-  for url in $(jq .preinstallBinaries .scripts/package.json | jq -r .[]); do
+  for url in $(jq .preinstallBinaries src/package.json | jq -r .[]); do
     download "$url" &
   done
 
@@ -153,7 +153,7 @@ public-ip() {
   echo "$(curl -sS icanhazip.com)"
 }
 dump-context() {
-  command -v gron &> /dev/null || (mkdir -p ~/.local/bin &> /dev/null && cd "$_" && wget -q -nv "https://raw.githubusercontent.com/borestad/static-binaries/main/gron" && chmod +x gron)
+  command -v gron &> /dev/null || (mkdir -p ~/.local/bin &> /dev/null && cd "$_" && wget -q -nv "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/bin/gron" && chmod +x gron)
 
   TOKEN="dump-context-$RANDOM-$RANDOM-token"
   echo "::group::Event ($(gron $GITHUB_EVENT_PATH | wc -l))"

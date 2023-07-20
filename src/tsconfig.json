@@ -10,7 +10,7 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "ES2023",
+    "target": "ESNext",
     "outDir": "./dist",
     "module": "esnext",
     "esModuleInterop": true,

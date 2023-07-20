@@ -31,10 +31,10 @@ timestamp
 # =============================================================================
 # Install node_modules
 # =============================================================================
-if cat $GITROOT/.scripts/package.json | jq -e .dependencies &>/dev/null; then
+if cat $GITROOT/src/package.json | jq -e .dependencies &>/dev/null; then
   ✨ "pnpm install"
 
-  cd $GITROOT/.scripts
+  cd $GITROOT/src
 
   # Applying dirty fix for *not* including @types/* in the production ci
   cp pnpm-lock.yaml $RUNNER_TEMPDIR/
